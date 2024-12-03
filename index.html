@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Login | Blue Lion</title>
+    <script>
+        // Předem dané přihlašovací údaje
+        const USERNAMES = ["Swix", "1", "YOU34"];
+        const PASSWORDS = ["BpuOnMBtkAw23Skkkrbidi", "1", "7KZq3jn1VYw7qv3tbq"];
+
+        // Funkce pro validaci přihlášení
+        function validateLogin(event) {
+            event.preventDefault(); // Zabráníme odeslání formuláře
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            
+            // Zkontroluj, zda jsou údaje správné
+            const index = USERNAMES.indexOf(username);
+            if (index !== -1 && PASSWORDS[index] === password) {
+                // Přesměrování na dashboard s uživatelským jménem v URL
+                window.location.href = "dashboard.html?username=" + username;
+            } else {
+                alert("Invalid credentials!");
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="login-box">
+        <div class="login-header">
+            <header>Login</header>
+        </div>
+        <form onsubmit="validateLogin(event)">
+            <div class="input-box">
+                <input type="text" class="input-field" id="username" placeholder="Username" autocomplete="off" required>
+            </div>
+            <div class="input-box">
+                <input type="password" class="input-field" id="password" placeholder="Password" autocomplete="off" required>
+            </div>
+            <div class="forgot">
+                <section>
+                    <input type="checkbox" id="check" name="check">
+                    <label for="check">Remember me</label>
+                </section>
+                <section>
+                    <a href="#">Forgot password</a>
+                </section>
+            </div>
+            <div class="input-submit">
+                <button class="submit-btn" id="submit"></button>
+                <label for="submit">Sign In</label>
+            </div>
+            <div class="sign-up-link">
+                <p>You cannot register, only login with pre-defined credentials.</p>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

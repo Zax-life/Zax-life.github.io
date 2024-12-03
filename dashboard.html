@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Ludiflex</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        // Uživatelé s přístupem do admin panelu
+        const ADMIN_USERS = ["Swix", "YOU34"];
+
+        // Funkce pro zobrazení jména uživatele a admin panelu
+        function displayUser() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const username = urlParams.get('username');
+            if (username) {
+                document.getElementById("welcomeMessage").innerText = `Welcome to your Dashboard, ${username}!`;
+                
+                // Zkontrolujeme, zda uživatel má přístup k admin panelu
+                if (ADMIN_USERS.includes(username)) {
+                    // Zobrazí admin panel pro oprávněné uživatele
+                    document.getElementById("adminPanel").style.display = "block";
+                } else {
+                    // Skrývá admin panel pro neoprávněné uživatele
+                    document.getElementById("adminPanel").style.display = "none";
+                }
+            }
+        }
+
+        window.onload = displayUser;
+    </script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1 id="welcomeMessage">Welcome to your Dashboard!</h1>
+        
+        <!-- Admin Panel -->
+        <div class="admin-panel" id="adminPanel" style="display:none;">
+            <h2>Admin Panel</h2>
+            <p>Sorry ale nemám čas tohle dodělat :( snad to bude co nejdřív - YOU34</p>
+        </div>
+
+        <!-- Logout Button -->
+        <a href="index.html">
+            <button class="logout-btn">Logout</button>
+        </a>
+    </div>
+</body>
+</html>
